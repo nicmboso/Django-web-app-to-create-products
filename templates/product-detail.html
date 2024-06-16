@@ -1,0 +1,13 @@
+{% block content %}
+<center>
+<h2>Title: {{ product.Title }}</h2>
+<i>Category: {{ product.Category }}</i>
+<p>Price: {{ product.Price }}</p>
+<p>Quantity: {{ product.Quantity }}</p>
+<p>In_stock: {{ product.In_stock }}</p>
+
+{% comment %} <div style="border: 2px black solid;">
+    <p>{{ post.content }}</p>
+</div> {% endcomment %}
+</center>
+{% endblock %}

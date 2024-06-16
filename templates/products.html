@@ -1,0 +1,75 @@
+{% block content %}
+<center>
+
+<h3>Search Products...</h3>
+
+<form class="d-flex" role="search" method="POST"
+action="{% url 'show_output' %}">
+    {% csrf_token %}
+    <input
+       class="form-control me-2"
+       type="search"
+       placeholder="Search Product"
+       name="search_query"
+       required aria-label="Search"
+    >
+    <button class="btn btn-outline-success" type="submit">Search</button>
+   </form>
+
+   <hr>
+   <hr>
+  
+ <h3>Products in Stock</h3>
+
+  
+<!-- the name is : {{ name }}
+the age is : {{ age }} -->
+
+{% for product in products %}
+
+
+<h3>Title : <a href="http://127.0.0.1:8000/detail/{{ product.id }}" target="_blank">{{ product.Title }}</a></h3>
+
+{% comment %} <h3>Title:{{ product.Title }}</h3> {% endcomment %}
+<p>Category : {{ product.Category }}</p>
+{% comment %} <p>Price : {{ product.Price }}</p>
+<p>Quantity : {{ product.Quantity }}</p>
+<p>In_stock : {{ product.In_stock }}</p> {% endcomment %}
+<a href="{% url 'delete_product' product_id=product.id %}">delete?</a>
+
+{% endfor %}
+
+<hr>
+<hr>
+
+<h3>Create Product</h3>
+<form method="post">
+    {% csrf_token %}
+
+    <label for="">Title:</label>
+    <input type="text" name="Title" id="">
+
+    <br>
+
+    <label for="">Category:</label>
+    <input type="text" name="Category" id="">
+
+    <br>
+
+    <label for="">Price:</label>
+    <input type="text" name="Price" id="">
+
+    <br>
+
+    <label for="">Quantity:</label>
+    <input type="text" name="Quantity" id="">
+
+    <br>
+
+    <label for="">In_stock:</label>
+    <input type="text" name="In_stock" id="">
+
+    <button type="submit">add product</button>
+</form>
+</center>
+{% endblock %}

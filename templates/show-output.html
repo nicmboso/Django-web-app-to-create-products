@@ -1,0 +1,68 @@
+
+<h2><center>
+  **************************************
+</center></h2>
+
+{% block content %}
+<center>
+<h1>You searched for {{ search_query }}</h1>
+<br>
+
+{% if search_query %}
+    <div>
+        <div>
+        <!-- check if there is a result in the database-->
+        {% if all_products %}
+            <!-- loop through search query if there is a result -->
+           
+            {% for each_product in all_products %}
+            
+                <div>
+                  <h3>Title : <a href="http://127.0.0.1:8000/detail/{{ each_product.id }}" target="_blank">{{ each_product.Title }}</a></h3>
+
+                    <!-- return search query -->
+                    <p>Category : {{ each_product.Category }}</p>
+                    <p>Price : {{ each_product.Price }}</p>
+                    <p>Quantity : {{ each_product.Quantity }}</p>
+                    <p>In_stock : {{ each_product.In_stock }}</p>
+                </div>
+            {% endfor %}
+            <!-- return a message if there are no results found. -->
+        {% else %}
+            <h3>No search results found or You forgot to search for a product...</h3>
+        {% endif %}
+        </div>
+    </div>
+{% else %}
+    <h3>Please enter a search query</h3>
+{% endif %}
+
+  </center>
+{% endblock %}
+
+
+
+
+{% comment %} {% block content %}
+
+{% if search_query %}
+  <h1>You searched for {{ search_query }}</h1>
+  <br>
+{% for each_product in all_products %}
+<h3>Title : <a href="http://127.0.0.1:8000/detail/{{ each_product.id }}" target="_blank">{{ each_product.Title }}</a></h3>
+<p>Category : {{ each_product.Category }}</p>
+<p>Price : {{ each_product.Price }}</p>
+<p>Quantity : {{ each_product.Quantity }}</p>
+<p>In_stock : {{ each_product.In_stock }}</p>
+
+  {%endfor%}
+  </br>
+
+{% else %}
+  <h2>You forgot to search for a product...</h2>
+
+{% endif %}
+
+{% endblock  %}
+
+{% block content %} {% endcomment %}
